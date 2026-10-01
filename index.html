@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slide 16 - Exemplos de erro</title>
+</head>
+<body>
+    <h1>Slide 16 - Exemplos com erro</h1>
+
+    <h2>Exemplo 1 - TypeError por acesso a propriedade de valor nulo</h2>
+    <p>Erro comum: acessar uma propriedade sem verificar se o valor existe.</p>
+
+    <pre>
+const aluno = null;
+
+console.log(aluno.nome);
+    </pre>
+
+    <button onclick="executarExemplo1()">Executar Exemplo 1</button>
+    <p id="saida1"><strong>Saída:</strong> Clique em executar.</p>
+
+    <hr>
+
+    <h2>Exemplo 2 - Erro lógico: cálculo da média com divisor errado</h2>
+    <p>Erro comum: retornar a soma sem dividir pela quantidade de itens.</p>
+
+    <pre>
+function calcularMedia(notas) {
+    let soma = 0;
+
+    for (let i = 0; i < notas.length; i++) {
+        soma += notas[i];
+    }
+
+    return soma; // Erro: não divide pela quantidade
+}
+
+console.log(calcularMedia([8, 9, 7]));
+    </pre>
+
+    <button onclick="executarExemplo2()">Executar Exemplo 2</button>
+    <p id="saida2"><strong>Saída:</strong> Clique em executar.</p>
+
+    <script>
+        function executarExemplo1() {
+            const aluno = null;
+            let mensagem = '';
+
+            try {
+                const resultado = aluno.nome;
+                mensagem = 'Resultado: ' + resultado;
+            } catch (erro) {
+                mensagem = 'Erro: ' + erro.name + ' - ' + erro.message;
+            }
+
+            document.getElementById('saida1').innerHTML =
+                '<strong>Saída:</strong> ' + mensagem;
+        }
+
+        function executarExemplo2() {
+            function calcularMedia(notas) {
+                let soma = 0;
+
+                for (let i = 0; i < notas.length; i++) {
+                    soma += notas[i];
+                }
+
+                return soma;
+            }
+
+            const resultado = calcularMedia([8, 9, 7]);
+
+            document.getElementById('saida2').innerHTML =
+                '<strong>Saída:</strong> ' + resultado +
+                ' (errado! deveria ser 8)';
+        }
+    </script>
+</body>
+</html>
